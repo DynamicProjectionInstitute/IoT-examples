@@ -1,3 +1,10 @@
+# Simple mqtt to MDC-X OSC converter
+
+# Copyright (c) 2017 by Dynamic Projeciton Institute GmbH, Vienna, Austria
+# Author: Martin Willner <willner@dynamicprojection.com>
+
+
+
 import socket
 import paho.mqtt.subscribe as subscribe
 

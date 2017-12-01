@@ -1,17 +1,33 @@
-# MQTT to  MDC-X1/2 control 
+# Various MQTT examples 
 
-## Overview
+## MQTT to  MDC-X1/2 control 
+
+### Overview
 
 Overview of communication of all devices
 ```
  [MQTT Server] <--> [MDC-X]--OSC-->(MDC)
 ```
 
-## Running the mosq2osc.py
+### Running the mosq2osc.py
 
 ```
 ~$ python mosq2osc.py
 ```
+
+
+## MQTT to JCD control 
+
+
+### Running the mqtt2jcd.py
+
+```
+~$ python mqtt2jcd.py
+```
+
+
+
+
 
 ## NO WARRANTY
 
@@ -27,4 +43,4 @@ REPAIR OR CORRECTION.
 
 
 
-*Copyright (c) by Dynamic Projection Institute GmbH*
+*Copyright (c) 2017 by Dynamic Projection Institute GmbH*
