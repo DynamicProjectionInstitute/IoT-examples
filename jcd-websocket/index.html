@@ -1,0 +1,38 @@
+<html>
+<head>
+  <script src="jquery-ui/external/jquery/jquery.js"></script>
+  <link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+  <script src="jquery-ui/jquery-ui.js"></script>
+  <script src="mqttws31.js" type="text/javascript"></script>
+  <script src="mqtt-config.js" type="text/javascript"></script>
+  <script src="mqtt.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1>Simple MQTT Websocket example for JCD</h1>
+        <div id="tabs">
+                <ul>
+                        <li><a href="#tabs-1">Control</a></li>
+                        <li><a href="#tabs-2">Log</a></li>
+                </ul>
+            <div id="tabs-1">
+            <button id="shutteron">Shutter ON</button>
+            <button id="shutteroff">Shutter OFF</button>
+            </div>
+            <div id="tabs-2">
+            <div id="status" style="width:800px; height: 100px; overflow:scroll;"></div>
+            </div>
+        </div>
+<script>
+    $(document).ready(function() {
+        MQTTconnect();
+        $("#shutteron").button().click(function(){
+            messageSend("jcd/global/jcd/cmd","SHON");
+        });
+        $("#shutteroff").button().click(function(){
+            messageSend("jcd/global/jcd/cmd","SHOFF");
+        });
+        $( "#tabs" ).tabs();
+    });
+</script>
+</body>
+</html>
