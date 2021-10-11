@@ -8,6 +8,9 @@
 # sudo apt-get install python3-setuptools
 # pip3 install paho-mqtt
 
+# if MDC-X itself is the broker install mosquitto:
+# sudo apt-get install mosquitto mosquitto-clients mosquitto-dev
+
 # run on the MDC-X with: python3 mqtt2osc_proxy.py 
 
 import socket,sys
@@ -16,7 +19,11 @@ from OSC import OSCClient, OSCMessage
 import ast
 
 #CONFIG STARTS HERE
-MQTT_SERVER="2.0.0.20" 
+
+# IF JCD is the Broker
+MQTT_SERVER="2.0.0.20"
+# if MDC-X itself is the broker use:
+# MQTT_SERVER="127.0.0.1" 
 MYUUID="1234"
 
 # USAGE
