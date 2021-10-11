@@ -6,6 +6,9 @@ The ESP32 device with a button triggers an OSC command which is published as a M
 
 ESP32 (publisher) =(MQTT)=> JCD (MQTT BROKER) <=(MQTT)= MDC-X ( mqtt2osc_proxy.py , subscriber) =(OSC)=> MDC program
 
+To use it without the JCD Broker (MDC-X as broker) you have to change the settings in the .ino and the .py file. The scenatio then is:
+
+ESP32 (publisher) =(MQTT)=> MDC-X (MQTT BROKER) <= (MQTT)= MDC-X ( mqtt2osc_proxy.py , subscriber) =(OSC)=> MDC program
 
 ## Install 
 
@@ -16,7 +19,7 @@ When you press the button on the ESP32 a message will be published. See the Seri
 
 ### MDX-X
 
-Install `sudo apt-get install python3-pip python-setuptools` and `pip3 install paho-mqtt` on the MDC-X device. The MQTT Server should be the JCD device, so use the default IP 2.0.0.20 for a vanilla setup. Start with `python3 mqtt2osc_proxy.py`
+Install `sudo apt-get install python3-pip python-setuptools` and `pip3 install paho-mqtt` on the MDC-X device. The MQTT Server should be the JCD device, so use the default IP 2.0.0.20 for a vanilla setup. if the MDC-X is the broker install `sudo apt-get install mosquitto mosquitto-clients mosquitto-dev`. Start with `python3 mqtt2osc_proxy.py` 
 
 
 
