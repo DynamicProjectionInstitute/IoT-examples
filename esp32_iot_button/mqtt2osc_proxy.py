@@ -16,7 +16,7 @@ from OSC import OSCClient, OSCMessage
 import ast
 
 #CONFIG STARTS HERE
-MQTT_SERVER="127.0.0.1" 
+MQTT_SERVER="2.0.0.20" 
 MYUUID="1234"
 
 # USAGE
