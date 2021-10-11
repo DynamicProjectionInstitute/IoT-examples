@@ -8,14 +8,29 @@
 WiFiClient wificlient;
 
 // SETUP START
+
+
+// JCD is the MQTT-BROKER - remove this or comment out to use MDC-X as broker
+#define JCD_IS_BROKER
+
+#ifdef JCD_IS_BROKER
 #define WLAN_SSID "JCD-7872034f" // JCD SSID
 #define WLAN_PASS "77f60414" // JCD WLAN PASS - see JCD label!
 #define IO_SERVER "192.168.1.1" // JCD WLAN IP 
+#else
+#define WLAN_SSID "MDC-X-HOTSPOT" // MDC-X SSID - factory default
+#define WLAN_PASS "mdcmdc123" // MDC-X WLAN PASS - factory default
+#define IO_SERVER "10.42.0.1" // MDC-X WLAN IP  - factory default
+#endif
+
 #define IO_SERVERPORT 1883 // DO NOT CHANGE FOR JCD
 #define IO_USERNAME "" // DO NOT CHANGE FOR JCD
 #define IO_KEY "" // DO NOT CHANGE FOR JCD
-#define BUTTON_PIN 0  //ESP32 WROOM 32 breakout default; otehr ESP32 use pin 3
-#define LED 14 //ESP32 breakout default
+
+// ESP32 SETUP 
+#define BUTTON_PIN 0  //ESP32 WROOM 32 breakout default; othr ESP32 use pin 3 - adjust to your breakout board! 
+#define LED 2 //ESP32 WROOM 32 breakout breakout default  - adjust to your breakout board! 
+
 Adafruit_MQTT_Client mqtt(&wificlient, IO_SERVER, IO_SERVERPORT, IO_USERNAME, IO_KEY);
 
 // publish to ALL (global) subscribed mdcx systems
@@ -62,7 +77,7 @@ void lighttoggle()
 {
     ledStatus = !ledStatus;
     digitalWrite(LED, ledStatus);
-    delay(250);
+    
 }
 
 void wificonnect()
@@ -74,10 +89,11 @@ void wificonnect()
     {
         Serial.print(".");
         lighttoggle();
+        delay(250);
     }
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
-    digitalWrite(LED, true);
+    digitalWrite(LED, HIGH);
 }
 
 void MQTT_connect()
@@ -104,6 +120,7 @@ void setup()
     Serial.begin(9600);
     Serial.println("HELLO");
     pinMode(BUTTON_PIN, INPUT_PULLUP);
+    pinMode(LED,OUTPUT);
     attachInterrupt(
         digitalPinToInterrupt(BUTTON_PIN), []
         {
@@ -145,6 +162,5 @@ void loop()
         i++;
         if(i>sizeof(presetlist)/sizeof(presetlist[0])-1) i=0;
     }
-    
     delay(25);
 }
